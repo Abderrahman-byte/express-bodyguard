@@ -8,6 +8,7 @@
         "quotes": ["error", "single"],
         "indent": ["error", 4],
         "semi": ["error", "never"],
-        "consistent-return": ["off"]
+        "consistent-return": ["off"],
+        "class-methods-use-this": ["off"]
     }
 }

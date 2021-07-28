@@ -17,7 +17,7 @@ const { securityHeaders } = require('express-security')
 app.use(securityHeaders())
 ```
 
-#### expressSecurity.securityHeaders :
+#### expressSecurity.rateLimit :
 
 ```javascript
 const { rateLimit } = require('express-security')
