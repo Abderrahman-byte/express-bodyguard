@@ -24,7 +24,7 @@ beforeAll((done) => {
         res.end('OK')
     })
 
-    server = app.start(done)
+    server = app.start(null, done)
 })
 
 afterAll((done) => {
