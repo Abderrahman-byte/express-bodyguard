@@ -4,6 +4,8 @@ const assert = require('assert')
 const app = require('./helpers/app')
 const { securityHeaders, ContentSecurityPolicy } = require('../src')
 
+let server = null
+
 beforeAll((done) => {
     app.use(securityHeaders())
     app.use('/csp', ContentSecurityPolicy({
@@ -22,7 +24,12 @@ beforeAll((done) => {
         res.end('OK')
     })
 
-    app.start(done)
+    server = app.start(done)
+})
+
+afterAll((done) => {
+    if (server) server.close()
+    done()
 })
 
 test('Test security headers', (done) => {
