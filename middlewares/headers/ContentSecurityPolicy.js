@@ -9,17 +9,19 @@ const DEFAULT_POLICIES = {
     'script-src': ['\'self\''],
     'script-src-attr': ['\'none\''],
     'style-src': ['\'self\'', 'https:'],
-    // 'upgrade-insecure-requests': [],
+    'upgrade-insecure-requests': [],
 }
 
 const ContentSecurityPolicy = (policies = {}) => {
     const usedPolicies = { ...DEFAULT_POLICIES, ...policies }
-    const normalizedDirectives = Object.entries(usedPolicies).map((policy) => `${policy[0]} ${policy[1].join(' ')}`)
+    const normalizedDirectives = Object.entries(usedPolicies)
+        .filter(policy => Boolean(policy[1]))
+        .map((policy) => `${policy[0]} ${policy[1].join(' ')}`)
     const headerValue = normalizedDirectives.join('; ')
     const headerName = 'Content-Security-Policy'
 
     return (request, response, next) => {
-        response.setHeader(headerName, headerValue)
+        if (headerValue.trim().length > 0) response.setHeader(headerName, headerValue)
         if (next instanceof Function) next()
     }
 }
