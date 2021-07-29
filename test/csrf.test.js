@@ -104,4 +104,4 @@ test('Sould Respond With 200 Given The Token', async () => expect(sendProperCsrf
 
 test('Sould Respond With 200 Given Token Before expired', async () => expect(sendExpiredCsrf(1000)).resolves.toBe(200))
 
-test('Sould Respond With 200 Given Token Before expired', async () => expect(sendExpiredCsrf(expiresIn * 1000)).resolves.toBe(statusCode))
+test('Sould Respond With Error Given Token After expired', async () => expect(sendExpiredCsrf(expiresIn * 1000)).resolves.toBe(statusCode))
