@@ -23,3 +23,21 @@ app.use(securityHeaders())
 const { rateLimit } = require('express-security')
 app.use(rateLimit())
 ```
+
+using [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis) :
+
+```shell
+npm install rate-limit-redis
+```
+
+```javascript
+
+const RedisStore = require('rate-limit-redis')
+const { rateLimit } = require('express-security')
+
+app.use(rateLimit({
+    store : new RedisStore({
+        redisURL: '<redis-url>',
+    })
+}))
+```
