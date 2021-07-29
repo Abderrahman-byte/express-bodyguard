@@ -22,8 +22,7 @@ beforeAll((done) => {
 })
 
 afterAll((done) => {
-    if (server && server.close) server.close()
-    done()
+    if (server && server.close) server.close(done)
 })
 
 test('Test Rate Limit', (done) => {
@@ -44,10 +43,9 @@ test('Test Rate Limit', (done) => {
             done()
         })
     }, 2000)
-}, 3000)
+}, 2100)
 
-
-test('Test Rate Limit Continously', done => {
+test('Test Rate Limit Continously', (done) => {
     const requestCount = 100
 
     for (let i = 1; i <= requestCount; i += 1) {
@@ -59,7 +57,7 @@ test('Test Rate Limit Continously', done => {
                 assert.strictEqual(body.toLowerCase(), 'too mush request', `Error request ${i}`)
             }
 
-            if(i === requestCount - 1) done()
+            if (i === requestCount - 1) done()
         })
     }
-})
+}, 200)

@@ -28,8 +28,7 @@ beforeAll((done) => {
 })
 
 afterAll((done) => {
-    if (server) server.close()
-    done()
+    if (server && server.close) server.close(done)
 })
 
 test('Test security headers', (done) => {
@@ -50,7 +49,7 @@ test('Test security headers', (done) => {
 
         done()
     })
-}, 1000)
+}, 50)
 
 test('Test Content Security Policy', (done) => {
     const expectedDirectives = [
@@ -69,4 +68,4 @@ test('Test Content Security Policy', (done) => {
 
         done()
     })
-}, 1000)
+}, 50)
