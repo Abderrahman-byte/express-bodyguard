@@ -4,6 +4,7 @@ const assert = require('assert')
 const app = require('./helpers/app')
 const { securityHeaders, ContentSecurityPolicy } = require('../src')
 
+const port = 1234
 let server = null
 
 beforeAll((done) => {
@@ -24,7 +25,7 @@ beforeAll((done) => {
         res.end('OK')
     })
 
-    server = app.start(null, done)
+    server = app.listen(port, done)
 })
 
 afterAll((done) => {
@@ -42,7 +43,7 @@ test('Test security headers', (done) => {
         'x-frame-option',
     ]
 
-    request('http://localhost:1234/', (err, response) => {
+    request(`http://localhost:${port}/`, (err, response) => {
         expectedHeaders.forEach((headerName) => assert(headerName in response.headers))
 
         inexpectedHeaders.forEach((headerName) => assert(!(headerName in response.headers)))
@@ -60,7 +61,7 @@ test('Test Content Security Policy', (done) => {
         'upgrade-insecure-requests',
     ]
 
-    request('http://localhost:1234/csp', (err, response) => {
+    request(`http://localhost:${port}/csp`, (err, response) => {
         const csp = response.headers['content-security-policy']
         const receivedDirectives = csp.split(';').map((d) => d.trim())
 
