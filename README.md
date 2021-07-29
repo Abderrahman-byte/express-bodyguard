@@ -1,26 +1,27 @@
-# Express Security
+# Express Bodyguard
 
-Express security is a library of middleware that helps enhance web application security.
+Express Bodyguard is a library of middleware that helps enhance web application security.
 
 ## Features :
 
 - [x] Http security headers
 - [x] Brute Forcing Protection
 - [x] CSRF Protection
+- [ ] Protection against Sql injections
 
 ## Middlewares :
 
-### expressSecurity.securityHeaders :
+### expressBodyguard.securityHeaders :
 
 ```javascript
-const { securityHeaders } = require('express-security')
+const { securityHeaders } = require('express-bodyguard')
 app.use(securityHeaders())
 ```
 
-### expressSecurity.rateLimit :
+### expressBodyguard.rateLimit :
 
 ```javascript
-const { rateLimit } = require('express-security')
+const { rateLimit } = require('express-bodyguard')
 app.use(rateLimit())
 ```
 
@@ -33,7 +34,7 @@ npm install rate-limit-redis
 ```javascript
 
 const RedisStore = require('rate-limit-redis')
-const { rateLimit } = require('express-security')
+const { rateLimit } = require('express-bodyguard')
 
 app.use(rateLimit({
     store : new RedisStore({
@@ -42,9 +43,9 @@ app.use(rateLimit({
 }))
 ```
 
-### expressSecurity.csrfProtection :
+### expressBodyguard.csrfProtection :
 ```javascript
-const { csrfProtection } = require('express-security')
+const { csrfProtection } = require('express-bodyguard')
 
 app.use(csrfProtection({
     secret: '<secret-sign-key>',
@@ -59,8 +60,8 @@ app.use(csrfProtection({
 ## Contribute
 
 ```
-git clone https://github.com/Abderrahman-byte/express-security
-cd express-security
+git clone https://github.com/Abderrahman-byte/express-bodyguard
+cd express-bodyguard
 npm install
 ```
 

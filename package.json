@@ -1,23 +1,24 @@
 {
-  "name": "express-security",
+  "name": "express-bodyguard",
   "version": "1.0.0",
   "description": "A collection of express security middlewares",
   "main": "./src/index.js",
-  "homepage": "https://github.com/Abderrahman-byte/express-security",
+  "homepage": "https://github.com/Abderrahman-byte/express-bodyguard",
   "scripts": {
     "lint": "eslint --fix .",
     "test": "npm run lint && jest --forceExit ./test/*.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Abderrahman-byte/express-security"
+    "url": "https://github.com/Abderrahman-byte/express-bodyguard"
   },
   "keywords": [
     "express",
     "middlewares",
     "security",
     "csrf",
-    "protection"
+    "protection",
+    "express-bodyguard"
   ],
   "author": "Abderrahman-byte",
   "license": "MIT",
@@ -36,6 +37,6 @@
     "jsonwebtoken": "^8.5.1"
   },
   "bugs": {
-    "url": "https://github.com/Abderrahman-byte/express-security/issues"
+    "url": "https://github.com/Abderrahman-byte/express-bodyguard/issues"
   }
 }
