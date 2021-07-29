@@ -55,3 +55,21 @@ app.use(csrfProtection({
     expiresIn: 3600,
 }))
 ```
+
+## Contribute
+
+```
+git clone https://github.com/Abderrahman-byte/express-security
+cd express-security
+npm install
+```
+
+To lint and test:
+
+```
+npm test
+```
+
+## License
+
+[MIT](LICENSE)
