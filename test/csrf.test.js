@@ -66,8 +66,8 @@ beforeAll((done) => {
     app.all('/', (req, res) => res.end('Ok'))
 
     app.use((err, req, res, next) => {
-        res.status(err.statusCode || 500).end(err.message || 'NOT OK')
-        next()
+        res.status(err.statusCode || 400).end(err.message)
+        if (next instanceof Function) next()
     })
 
     server = app.listen(port, done)

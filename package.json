@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --fix .",
-    "test": "npm run lint && jest --forceExit --runInBand ./test/*.test.js"
+    "test": "npm run lint && jest --forceExit ./test/*.test.js"
   },
   "keywords": [],
   "author": "",
