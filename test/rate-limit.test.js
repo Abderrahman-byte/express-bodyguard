@@ -8,7 +8,8 @@ let server = null
 const requestPerSecond = 50
 
 beforeAll((done) => {
-    app.use(rateLimit({ requestPerSecond }))
+    app.use('/', rateLimit({ requestPerSecond }))
+    app.use('/2', rateLimit({ requestPerSecond }))
 
     app.get('*', (req, res) => res.end('Ok'))
 
@@ -44,3 +45,21 @@ test('Test Rate Limit', (done) => {
         })
     }, 2000)
 }, 3000)
+
+
+test('Test Rate Limit Continously', done => {
+    const requestCount = 100
+
+    for (let i = 1; i <= requestCount; i += 1) {
+        request('http://127.0.0.1:1236/2', (err, response, body) => {
+            if (i < requestPerSecond - 2) {
+                assert.strictEqual(response.statusCode, 200, `Error request ${i}`)
+            } else {
+                assert.strictEqual(response.statusCode, 429, `Error request ${i}`)
+                assert.strictEqual(body.toLowerCase(), 'too mush request', `Error request ${i}`)
+            }
+
+            if(i === requestCount - 1) done()
+        })
+    }
+})
