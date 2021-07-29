@@ -2,29 +2,29 @@
 
 Express security is a library of middleware that helps enhance web application security.
 
-### Features :
+## Features :
 
 - [x] Http security headers
 - [x] Brute Forcing Protection
-- [ ] CSRF Protection
+- [x] CSRF Protection
 
-### Middleware :
+## Middlewares :
 
-#### expressSecurity.securityHeaders :
+### expressSecurity.securityHeaders :
 
 ```javascript
 const { securityHeaders } = require('express-security')
 app.use(securityHeaders())
 ```
 
-#### expressSecurity.rateLimit :
+### expressSecurity.rateLimit :
 
 ```javascript
 const { rateLimit } = require('express-security')
 app.use(rateLimit())
 ```
 
-using [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis) :
+using [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis) as store :
 
 ```shell
 npm install rate-limit-redis
@@ -39,5 +39,19 @@ app.use(rateLimit({
     store : new RedisStore({
         redisURL: '<redis-url>',
     })
+}))
+```
+
+### expressSecurity.csrfProtection :
+```javascript
+const { csrfProtection } = require('express-security')
+
+app.use(csrfProtection({
+    secret: '<secret-sign-key>',
+    key: 'csrfToken',
+    saveMethods: ['HEAD', 'OPTIONS', 'GET'],
+    statusCode: 403,
+    message: 'Invalid CSRF Token',
+    expiresIn: 3600,
 }))
 ```
