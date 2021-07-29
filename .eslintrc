@@ -1,6 +1,7 @@
 {
     "root": true,
     "extends": "airbnb-base",
+    "parser": "babel-eslint",
     "parserOptions": {
         "sourceType": "script"
     },
@@ -9,6 +10,7 @@
         "indent": ["error", 4],
         "semi": ["error", "never"],
         "consistent-return": ["off"],
-        "class-methods-use-this": ["off"]
+        "class-methods-use-this": ["off"],
+        "no-underscore-dangle": ["error", { "allow": ["_csrf", "options_"]}]
     }
 }

@@ -5,17 +5,22 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --fix .",
-    "test": "npm run lint && jest --forceExit ./test/*.test.js"
+    "test": "npm run lint && jest --forceExit --runInBand ./test/*.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.31.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
     "express": "^4.17.1",
     "jest": "^27.0.6",
     "request": "^2.88.2"
+  },
+  "dependencies": {
+    "cookie": "^0.4.0",
+    "jsonwebtoken": "^8.5.1"
   }
 }
