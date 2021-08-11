@@ -47,7 +47,8 @@ const csrfProtection = (options) => {
         const csrfTokenCookie = cookies[key]
         const recievedCsrf = getCsrfFromRequest(request)
 
-        const verified = csrfTokenCookie === recievedCsrf && Token.verify(csrfTokenCookie, secret)
+        const cookieVerified = Token.verify(csrfTokenCookie, secret)
+        const verified = csrfTokenCookie === recievedCsrf && cookieVerified
 
         // Verify Incoming request
         if (!isSafe && (!csrfTokenCookie || !verified)) {
@@ -58,7 +59,7 @@ const csrfProtection = (options) => {
         request.csrfToken = () => renewCsrfToken(request, response, secret, options_)
 
         // renew Token if request method is but token has expired
-        if (!csrfTokenCookie || !verified) request.csrfToken()
+        if (!csrfTokenCookie || !cookieVerified) request.csrfToken()
         else request._csrf = csrfTokenCookie
 
         next()
