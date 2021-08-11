@@ -34,7 +34,7 @@ const renewCsrfToken = (request, response, secret, options) => {
 }
 
 const csrfProtection = (options) => {
-    const options_ = Object.assign(DEFAULT_OPTIONS, options)
+    const options_ = { ...DEFAULT_OPTIONS, ...options }
     const { secret } = options_
     const { key } = options_
     const saveMethods = options_.saveMethods.map((m) => m.toLowerCase())
